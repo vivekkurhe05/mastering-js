@@ -71,3 +71,18 @@ function augment(destination, source, ...methodNames) {
 
     return destination;
 }
+
+/**
+ * In this case, we added the rest parameter methodNames to allow an indefinite number of parameters after the
+ * source and destination ones. If a list of method names is passed, the function adds just them to the destination
+ * object. This allows us to select members to add from a mixin, as in the following example:
+ */
+
+augment(Person.prototype, namingMixin, "getFullName");
+augment(Person.prototype, movingMixin, "goLeft", "goRight");
+augment(Person.prototype, studyingMixin, "readTopic", "writeTopic", "repeatTopic");
+
+var marioRossi = new Person("Mario", "Rossi")
+console.log(marioRossi.goLeft());
+console.log(marioRossi.readTopic());
+console.log(marioRossi.getFullName());
